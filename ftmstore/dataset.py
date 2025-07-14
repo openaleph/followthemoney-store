@@ -2,7 +2,6 @@ import logging
 from datetime import datetime
 from normality import slugify
 from banal import ensure_list
-from followthemoney import model
 from followthemoney.proxy import EntityProxy
 from sqlalchemy import Column, DateTime, String, UniqueConstraint
 from sqlalchemy import Table, JSON
