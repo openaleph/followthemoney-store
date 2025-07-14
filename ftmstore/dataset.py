@@ -116,7 +116,7 @@ class Dataset(object):
     def partials(self, entity_id=None, skip_errors=False):
         for fragment in self.fragments(entity_ids=entity_id):
             try:
-                yield EntityProxy(model, fragment, cleaned=True)
+                yield EntityProxy.from_dict(fragment, cleaned=True)
             except Exception:
                 if skip_errors:
                     log.exception("Invalid data [%s]: %s", self.name, fragment["id"])
@@ -170,7 +170,7 @@ class Dataset(object):
         q = select(func.count(distinct(self.table.c.id)))
         with self.store.engine.connect() as conn:
             res = conn.execute(q)
-        
+
         return res.scalar()
 
     def __repr__(self):
